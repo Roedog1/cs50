@@ -4,7 +4,7 @@
 
 int main(void)
 {
-    float dollars; 
+    float dollars; // do-while loop
     do 
     {
        dollars = get_float ("change owed: "); // user input of change
@@ -33,6 +33,5 @@ int main(void)
         cents -= 1;
         coins++;
     }
-    
     printf ("%i\n", coins);
 }
