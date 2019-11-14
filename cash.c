@@ -4,31 +4,31 @@
 
 int main(void)
 {
-    float dollars;
+    float dollars; 
     do 
-   {
-       dollars = get_float ("change owed: ");
-   }
-    while (dollars < 0);
+    {
+       dollars = get_float ("change owed: "); // user input of change
+    }
+    while (dollars < 0); // ensure positive amount entered
     
-    int cents = round(dollars * 100);
-    int coins = 0;
-    while (cents >= 25)
+    int cents = round(dollars * 100); // convert dollars to cents
+    int coins = 0; // store the number of coins
+    while (cents >= 25)  // quarter loop
     {
         cents -= 25;
         coins++;  
     }
-    while (cents >= 10)
+    while (cents >= 10) // dime loop
     {
         cents -= 10;
         coins++;
     }
-    while (cents >= 5)
+    while (cents >= 5) // nickel loop
     {
         cents -= 5;
         coins++;
     }
-    while (cents >= 1)
+    while (cents >= 1) // penny loop
     {
         cents -= 1;
         coins++;
