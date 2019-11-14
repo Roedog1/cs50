@@ -7,7 +7,7 @@ int main(void)
     float dollars; // do-while loop
     do 
     {
-       dollars = get_float ("change owed: "); // user input of change
+        dollars = get_float("change owed: "); // user input of change
     }
     while (dollars < 0); // ensure positive amount entered
     
@@ -33,5 +33,5 @@ int main(void)
         cents -= 1;
         coins++;
     }
-    printf ("%i\n", coins);
+    printf("%i\n", coins);
 }
