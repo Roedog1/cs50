@@ -18,11 +18,11 @@ int main(int argc, string argv[])
     {
         if (islower(s[i]))
         {
-            printf("%c", ((s[i] - 'a') + k)%26 + 'a');
+            printf("%c", ((s[i] - 'a') + k) % 26 + 'a');
         }
         else if (isupper(s[i]))
         {
-            printf("%c", ((s[i] - 'A') + k)%26 + 'A');
+            printf("%c", ((s[i] - 'A') + k) % 26 + 'A');
         }
         else
         {
