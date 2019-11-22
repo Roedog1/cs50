@@ -36,7 +36,7 @@ int main(int argc, string argv[])
             {
                 printf("%c", ((s[i] - 'A') + toupper(k[j]) - 'A') % 26 + 'A');
             }
-         j = (j + 1) % lenk; //wrap around, count off function
+            j = (j + 1) % lenk; //wrap around, count off function
         }
         else
         {
