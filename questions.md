@@ -2,7 +2,7 @@
 
 ## What's `stdint.h`?
 
-It is a header file in C standard library to allow programmers to write more portable code with a set of typedef that specify the exact integers type, together with the defined maximum and miniumum allowable values for each types, using macros. 
+It is a header file in C standard library that declare sets of integer types having specified widths, and shall define corresponding sets of macros.
 
 ## What's the point of using `uint8_t`, `uint32_t`, `int32_t`, and `uint16_t` in a program?
 
@@ -42,7 +42,7 @@ The third argument determines the number of elements fread will read. This argum
 
 ## What value does `copy.c` assign to `padding` if `bi.biWidth` is `3`?
 
-3
+3. RGBTRIPLE = 3 bytes, int padding = (4 - (3 * 3 % 4) % 4; int padding = 3
 
 ## What does `fseek` do?
 
