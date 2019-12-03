@@ -2,48 +2,52 @@
 
 ## What's `stdint.h`?
 
-TODO
+It is a header file in C standard library to allow programmers to write more portable code with a set of typedef that specify the exact integers type, together with the defined maximum and miniumum allowable values for each types, using macros. 
 
 ## What's the point of using `uint8_t`, `uint32_t`, `int32_t`, and `uint16_t` in a program?
 
-TODO
+These functions are a cross-platform implementation of a standard data type. uint8_t is an unsigned int of 8 bits, uint32_t is an unsigned long long, int32_t is a signed long long, and a uint16_t is an unsigned 16 bit int
 
 ## How many bytes is a `BYTE`, a `DWORD`, a `LONG`, and a `WORD`, respectively?
 
-TODO
+BYTE: 1
+DWORD: 4
+LONG: 4
+WORD: 2
 
 ## What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? Leading bytes used to identify file formats (with high probability) are generally called "magic numbers."
 
-TODO
+The first two bytes must be BM, 0x42 in hexadecimal 
 
 ## What's the difference between `bfSize` and `biSize`?
 
-TODO
+bfsize is the size of the bitmap file in bytes
+bisize is the size of the BITMAPINFOHEADER in bytes
 
 ## What does it mean if `biHeight` is negative?
 
-TODO
+When biHeight is negative, the bitmap is a top-down DIB and its origin is the upper-left corner.
 
 ## What field in `BITMAPINFOHEADER` specifies the BMP's color depth (i.e., bits per pixel)?
 
-TODO
+biBitCount
 
 ## Why might `fopen` return `NULL` in `copy.c`?
 
-TODO
+If the file cannot be found.
 
 ## Why is the third argument to `fread` always `1` in our code?
 
-TODO
+The third argument determines the number of elements fread will read. This argument is always 1 because we are always reading only one file.
 
 ## What value does `copy.c` assign to `padding` if `bi.biWidth` is `3`?
 
-TODO
+3
 
 ## What does `fseek` do?
 
-TODO
+It moves the file position indicator to the value pointed by the offset.
 
 ## What is `SEEK_CUR`?
 
-TODO
+It moves file pointer position to given location
