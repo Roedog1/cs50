@@ -56,18 +56,20 @@ int main(int argc, char *argv[])
         return 4;
     }
 
-    // determine padding for scanlines
-    int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
-
     //modify the headers
     //new file headers
     BITMAPFILEHEADER new_bf = bf;
     BITMAPINFOHEADER new_bi = bi;
-
     new_bi.biWidth *= n;
     new_bi.biHeight *= n;
+
+     // determine padding for scanlines
+    int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
     int new_padding = (4 - (new_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
-    new_bi.biSizeImage = ( sizeof(RGBTRIPLE) * new_bi.biWidth + new_padding) *abs(new_bi.biHeight);
+
+    //reconfigure headers
+    new_bi.biSizeImage = ((sizeof(RGBTRIPLE) * new_bi.biWidth) + new_padding) * abs(new_bi.biHeight);
+    new_bf.bfSize = new_bi.biSizeImage + sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
 
     // write outfile's BITMAPFILEHEADER
     fwrite(&new_bf, sizeof(BITMAPFILEHEADER), 1, outptr);
@@ -75,7 +77,8 @@ int main(int argc, char *argv[])
     // write outfile's BITMAPINFOHEADER
     fwrite(&new_bi, sizeof(BITMAPINFOHEADER), 1, outptr);
 
-
+     // allocate a memory to store one scanline
+    RGBTRIPLE scanline[new_bi.biWidth * sizeof(RGBTRIPLE)];
 
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
