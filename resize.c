@@ -58,8 +58,6 @@ int main(int argc, char *argv[])
 
     //modify the headers
     //new file headers
-    BITMAPFILEHEADER new_bf = bf;
-    BITMAPINFOHEADER new_bi = bi;
     new_bi.biWidth *= n;
     new_bi.biHeight *= n;
 
@@ -80,7 +78,7 @@ int main(int argc, char *argv[])
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
-        for (int repeat = 0; repeat < n; repeat++) // write current scaline n times
+        for (int repeat = 0; repeat < n; repeat++) // write current scanline n times
         {
             // iterate over pixels in scanline
             for (int j = 0; j < bi.biWidth; j++)
