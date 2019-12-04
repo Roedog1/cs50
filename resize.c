@@ -93,7 +93,8 @@ int main(int argc, char *argv[])
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr); // a b c + padding
 
             // write RGB triple to outfile n times (width)
-            fwrite(&triple, sizeof(RGBTRIPLE), n, outptr); // a a b b c c + new_padding
+            for(int x = 0; x < n; x++)
+            fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr); // a a b b c c + new_padding
         }
 
         // skip over padding, if any
