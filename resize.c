@@ -83,9 +83,11 @@ int main(int argc, char *argv[])
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
-        // iterate over pixels in scanline
-        for (int j = 0; j < bi.biWidth; j++)
+        for (int repeat = 0; repeat < n; repeat++) // write current scaline n times
         {
+            // iterate over pixels in scanline
+            for (int j = 0; j < bi.biWidth; j++)
+            {
             // temporary storage
             RGBTRIPLE triple;
 
@@ -95,21 +97,18 @@ int main(int argc, char *argv[])
             // write RGB triple to outfile n times (width)
             for(int x = 0; x < n; x++)
             fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr); // a a b b c c + new_padding
-        }
+            }
 
-        // skip over padding, if any
-        fseek(inptr, padding, SEEK_CUR);
+            // skip over padding, if any
+            fseek(inptr, padding, SEEK_CUR);
 
-        // then add it back (to demonstrate how) new padding
-        for (int k = 0; k < new_padding; k++)
-        {
+            // then add it back (to demonstrate how) new padding
+            for (int k = 0; k < new_padding; k++)
+            {
             fputc(0x00, outptr);
-        }
-        if (repeat < n-1)
-        {
-            //rewrite the current scanline n-1 times
-            fseek(inptr, -(bi.biWidth * 3 + padding), SEEK_CUR);
-
+            }
+            if (repeat < n - 1) //rewind the current scanline n-1 times
+                fseek(inptr, -(bi.biWidth * (int)sizeof(RGBTRIPLE)), SEEK_CUR);
         }
     }
 
