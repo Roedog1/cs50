@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
     new_bi.biWidth *= n;
     new_bi.biHeight *= n;
 
-     // determine padding for scanlines
+    // determine padding for scanlines
     int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
     int new_padding = (4 - (new_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
