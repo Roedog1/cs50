@@ -58,6 +58,8 @@ int main(int argc, char *argv[])
 
     //modify the headers
     //new file headers
+    BITMAPFILEHEADER new_bf = bf;
+    BITMAPINFOHEADER new_bi = bi;
     new_bi.biWidth *= n;
     new_bi.biHeight *= n;
 
@@ -78,20 +80,22 @@ int main(int argc, char *argv[])
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
-        for (int repeat = 0; repeat < n; repeat++) // write current scanline n times
+        for (int repeat = 0; repeat < n; repeat++) // write current scanline n times, repeating.
         {
             // iterate over pixels in scanline
             for (int j = 0; j < bi.biWidth; j++)
             {
-            // temporary storage
-            RGBTRIPLE triple;
+                // temporary storage
+                RGBTRIPLE triple;
 
-            // read RGB triple from infile
-            fread(&triple, sizeof(RGBTRIPLE), 1, inptr); // a b c + padding
+                // read RGB triple from infile
+                fread(&triple, sizeof(RGBTRIPLE), 1, inptr); // a b c + padding
 
-            // write RGB triple to outfile n times (width)
-            for(int x = 0; x < n; x++)
-            fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr); // a a b b c c + new_padding
+                // write RGB triple to outfile n times (width)
+                for (int x = 0; x < n; x++)
+                {
+                    fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr); // a a b b c c + new_padding
+                }
             }
 
             // skip over padding, if any
@@ -100,10 +104,12 @@ int main(int argc, char *argv[])
             // then add it back (to demonstrate how) new padding
             for (int k = 0; k < new_padding; k++)
             {
-            fputc(0x00, outptr);
+                fputc(0x00, outptr);
             }
             if (repeat < n - 1) //rewind the current scanline n-1 times
+            {
                 fseek(inptr, -(bi.biWidth * sizeof(RGBTRIPLE) + padding), SEEK_CUR);
+            }
         }
     }
 
