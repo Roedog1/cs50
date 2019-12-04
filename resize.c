@@ -105,6 +105,12 @@ int main(int argc, char *argv[])
         {
             fputc(0x00, outptr);
         }
+        if (repeat < n-1)
+        {
+            //rewrite the current scanline n-1 times
+            fseek(inptr, -(bi.biWidth * 3 + padding), SEEK_CUR);
+
+        }
     }
 
     // close infile
