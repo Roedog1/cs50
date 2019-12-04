@@ -77,9 +77,6 @@ int main(int argc, char *argv[])
     // write outfile's BITMAPINFOHEADER
     fwrite(&new_bi, sizeof(BITMAPINFOHEADER), 1, outptr);
 
-     // allocate a memory to store one scanline
-    RGBTRIPLE scanline[new_bi.biWidth * sizeof(RGBTRIPLE)];
-
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
