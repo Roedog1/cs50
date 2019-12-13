@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef unsigned char BYTE;
+
 int main(int argc, char *argv[])
 {
-    if (arg c != 2)
+    if (argc != 2)
     {
         fprintf(stderr, "usage: ./recover image\n");
         return 1;
@@ -12,7 +14,7 @@ int main(int argc, char *argv[])
     FILE *inptr = fopen("card.raw", "r");
     if (inptr == NULL)
     {
-        fprintf(stderr, "File Not Found!\n")
+        fprintf(stderr, "File Not Found!\n");
         return 2;
     }
 
@@ -21,9 +23,9 @@ int main(int argc, char *argv[])
     char filename[8];
     FILE *outptr = NULL;
 
-    While (fread(buffer, 1, 512)!= 0x00)
+    while (fread(buffer, 1, 512, outptr)!= 0x00)
     {
-        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xe0) = 0xe0)
+        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
             if (outptr != NULL)
             {
@@ -52,8 +54,3 @@ int main(int argc, char *argv[])
 
 
 
-
-
-
-
-}
