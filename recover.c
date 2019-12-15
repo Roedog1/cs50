@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     char filename[8];
     FILE *outptr = NULL;
 
-    while (fread(buffer, 512, 1, inptr)!= 0x00)
+    while (fread(buffer, 1, 512, inptr)!= 0x00)
     {
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
@@ -38,15 +38,12 @@ int main(int argc, char *argv[])
         }
         if (outptr != NULL)
         {
-            fwrite(buffer, 512, 1, outptr);
+            fwrite(buffer, 1, 512, outptr);
 
         }
     }
 
-    if (outptr != NULL)
-    {
-        fclose(outptr);
-    }
+    fclose(outptr);
 
     fclose(inptr);
 
