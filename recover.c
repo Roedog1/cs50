@@ -4,7 +4,8 @@
 typedef unsigned char BYTE;
 
 int main(int argc, char *argv[])
-{   //ensure user type in one comment argument
+{
+    //ensure user type in one comment argument
     if (argc != 2)
     {
         fprintf(stderr, "usage: ./recover image\n");
@@ -24,9 +25,11 @@ int main(int argc, char *argv[])
     FILE *outptr = NULL;
 
     // read in 512 block of the image
-    while (fread(buffer, 1, 512, inptr)!= 0x00)
+    while (fread(buffer, 1, 512, inptr) != 0x00)
     {
-        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0) // check if we found the beginning of a JPEG
+        // check if we found the beginning of a JPEG
+        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff
+        && (buffer[3] & 0xf0) == 0xe0)
         {
             if (outptr != NULL) // found another JPEG then close the previous file
             {
