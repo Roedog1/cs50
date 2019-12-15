@@ -30,11 +30,11 @@ int main(int argc, char *argv[])
             if (outptr != NULL)
             {
                 fclose(outptr);
-                imagecounter++;
             }
 
             sprintf(filename, "%03i.jpg", imagecounter);
             outptr = fopen(filename, "w");
+            imagecounter++;
         }
         if (outptr != NULL)
         {
