@@ -93,7 +93,7 @@ void print_winner(void)
     //print the winner candidate(s) with the highest number of votes (max_vote)
     for (int j = 0; j < candidate_count; j++)
     {
-        if (candidates[j].votes == max_vote)5
+        if (candidates[j].votes == max_vote)
         
         {
              printf("%s\n", candidates[j].name);
